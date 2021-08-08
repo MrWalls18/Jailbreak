@@ -48,7 +48,7 @@ public class PlayerMovement : SingletonPattern<PlayerMovement>
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(groundCheck.position, groundDistance);
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawSphere(groundCheck.position, groundDistance);
     }
 }
