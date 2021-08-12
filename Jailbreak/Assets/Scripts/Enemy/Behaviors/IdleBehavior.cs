@@ -9,22 +9,30 @@ public class IdleBehavior : StateMachineBehaviour
 
     private float currentTime;
 
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         currentTime = Time.time + timeToWait;
-        Debug.Log(currentTime);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (currentTime < Time.time)
-        {
-            animator.SetBool("isPatrolling", true);
-        }
+        Timer(animator);
+
 
     }
+
+    private void Timer(Animator enemyAnim)
+    {
+        if (currentTime < Time.time)
+        {
+            enemyAnim.SetBool("isPatrolling", true);
+        }
+    }
+
+    
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -11,6 +11,7 @@ public class PatrolBehavior : StateMachineBehaviour
     private bool isMoving;
     private NavMeshAgent enemyAgent;
 
+
     [SerializeField] private float maxDistance, speedMultiplier;
 
 
@@ -21,7 +22,6 @@ public class PatrolBehavior : StateMachineBehaviour
         isMoving = false;
 
         enemyAgent = animator.GetComponent<NavMeshAgent>();
-        Debug.Log("is agent null? " + enemyAgent);
 
         
     }
