@@ -34,6 +34,8 @@ public class PatrolBehavior : StateMachineBehaviour
             GetNextPosition();  
         }
         
+        
+
         MoveToPosition(animator);
     }
 
@@ -43,7 +45,7 @@ public class PatrolBehavior : StateMachineBehaviour
         
     }
 
-        //Finds the next valid position based on the requirements
+    //Finds the next valid position based on the requirements
     //Will continue to run until valid position is found
     private void GetNextPosition()
     {
@@ -63,8 +65,11 @@ public class PatrolBehavior : StateMachineBehaviour
         }
     }
 
+
+    ///////
     //Sets isMoving to true and waits until
     //enemy is close to patrolPoint to snap enemy to point
+    ///////
     private void MoveToPosition(Animator anim)
     {
         if (!isMoving)
@@ -74,13 +79,20 @@ public class PatrolBehavior : StateMachineBehaviour
             isMoving = true;
         }
 
-        if (Vector3.Distance(this.enemyAgent.transform.position, currentPos.position) < 0.2f)
+        ///////
+        // 08/12/2021
+        // Final distance is  about 0.25f
+        // Temporary fix to leave < distance at 0.3f
+        ///////
+        if (Vector3.Distance(this.enemyAgent.transform.position, enemyAgent.destination) < 0.3f)
         {
-            this.enemyAgent.transform.position = currentPos.position;
             anim.SetBool("isPatrolling", false);
         }
     }
 
+
+
+    #region Other State Methods
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
@@ -92,4 +104,7 @@ public class PatrolBehavior : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+
+    #endregion Other State Methods
+
 }
